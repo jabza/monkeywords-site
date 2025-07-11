@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Monkeywords - Call with 3 words</title>
+		<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🍌%3C/text%3E%3C/svg%3E">
+		<link href="./style.css" rel="stylesheet">
+	</head>
+	<body class="bg-yellow-50 text-[#5A3E36] min-h-screen flex flex-col items-center justify-evenly p-4">
+		<!-- Site title -->
+		<a href="/" class="absolute top-4 left-4 text-lg font-bold hover:underline flex items-center space-x-1"><span>🙈</span><span>monkeywords.org</span></a>
+		<a href="https://github.com/username/monkeywords.org" target="_blank" class="absolute top-4 right-4 text-sm underline">GitHub</a>
+
+		<div class="flex flex-col items-center justify-center">
+			<!-- Hero -->
+			<h1 class="text-3xl md:text-4xl font-bold text-center my-8 max-w-xl leading-tight">
+				Call your emergency contacts with 3 memorable words.
+			</h1>
+
+			<!-- Card -->
+			<div class="relative max-w-md w-full bg-white rounded-2xl shadow-lg p-6">
+				<p class="text-xl font-bold text-center">What’s your words? 🙈</p>
+
+				<!-- Mode tabs -->
+				<div class="flex justify-center mt-6">
+					<button id="modeN2w" class="px-4 py-2 mx-1 rounded-full bg-[#5A3E36] text-yellow-50">Get your Words 🙈</button>
+					<button id="modeW2n" class="px-4 py-2 mx-1 rounded-full bg-yellow-200 text-[#5A3E36]">Make a Call 🍌</button>
+				</div>
+
+				<!-- Forms -->
+				<div id="formArea" class="mt-6">
+					<!-- Number → Words form -->
+					<div id="numberInput" class="space-y-4">
+						<div class="flex items-center space-x-2">
+							<select id="countryNum" class="p-2 border rounded-lg bg-gray-100 flex-shrink-0">
+								<option value="44">🇬🇧 +44</option>
+								<option value="1">🇺🇸 +1</option>
+								<option value="33">🇫🇷 +33</option>
+								<option value="49">🇩🇪 +49</option>
+							</select>
+							<input id="phone" type="tel" placeholder="07123456789" class="flex-1 p-2 border rounded-lg" />
+						</div>
+						<button id="convertBtn" class="w-full py-2 rounded-lg bg-[#5A3E36] text-yellow-50">Convert to Words</button>
+					</div>
+
+					<!-- Words → Number form -->
+					<div id="wordsInput" class="hidden space-y-4">
+						<div class="flex items-center space-x-2">
+							<select id="countryWord" class="p-2 border rounded-lg bg-gray-100 flex-shrink-0">
+								<option value="44">🇬🇧 +44</option>
+								<option value="1">🇺🇸 +1</option>
+								<option value="33">🇫🇷 +33</option>
+								<option value="49">🇩🇪 +49</option>
+							</select>
+							<input id="monwords" type="text" placeholder="sneaky.panda.dragon" class="flex-1 p-2 border rounded-lg" />
+						</div>
+						<button id="callBtn" class="w-full py-2 rounded-lg bg-yellow-200 text-[#5A3E36]">Call 🍌</button>
+					</div>
+
+					<!-- Result -->
+					<div id="result" class="mt-4 text-center font-semibold break-words"></div>
+				</div>
+
+				<p class="mt-6 text-xs text-center">🛡️ Numbers never leave your browser. Monkeywords is built to run offline.</p>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer class="mt-4 text-center text-xs">
+			Made with <span aria-label="love" role="img">❤️</span> by <a href="https://moonstopsoftware.com" class="underline" target="_blank" rel="noopener">Thomas Kilsby</a>
+		</footer>
+
+		<script type="module">
+			import titles from "./data/titles.json";
+			import adjectives from "./data/adjectives.json";
+			import nouns from "./data/nouns.json";
+
+			// Country validation rules
+			const countryRules = {
+				44: { trunk: '07', length: 11, prefixPattern: /^07\d{9}$/, wordCount: 3 },
+				1:  { trunk: '',  length: 10, prefixPattern: /^[2-9]\d{9}$/, wordCount: 4 },
+				33: { trunk: '0', length: 10, prefixPattern: /^0[67]\d{8}$/, wordCount: 3 },
+				49: { trunk: '0', length: 11, prefixPattern: /^01[5-9]\d{8}$/, wordCount: 4 }
+			};
+
+			// DOM cache
+			const dom = {
+				modeN2w: document.getElementById('modeN2w'),
+				modeW2n: document.getElementById('modeW2n'),
+				convertBtn: document.getElementById('convertBtn'),
+				callBtn: document.getElementById('callBtn'),
+				secNum: document.getElementById('numberInput'),
+				secWords: document.getElementById('wordsInput'),
+				result: document.getElementById('result'),
+				countryNum: document.getElementById('countryNum'),
+				countryWord: document.getElementById('countryWord'),
+				inputPhone: document.getElementById('phone'),
+				inputWords: document.getElementById('monwords')
+			};
+
+			const getActiveCountryCode = () => dom.secNum.classList.contains('hidden') ? dom.countryWord.value : dom.countryNum.value;
+
+			const splitTriplets = digits => digits.match(/\d{3}/g) || [];
+
+			const sanitizeInputNumber = (rawInput, countryRules) => {
+				const digits = rawInput.replace(/\D/g, '');
+				if (digits.length !== countryRules.length || !countryRules.prefixPattern.test(digits)) return null;
+				return countryRules.trunk && digits.startsWith(countryRules.trunk) ? digits.slice(countryRules.trunk.length) : digits;
+			};
+
+			const sanitizeInputWords = (rawInput, countryRules) => {
+				const words = rawInput.trim().toLowerCase().split(/[.\s]+/);
+				if (words.length != countryRules.wordCount) return null;
+				return words;
+			};
+
+			const updateInputPlaceholder = () => {
+				dom.inputWords.placeholder = countryRules[dom.countryWord.value].wordCount === 3 ? "sneaky.panda.dragon" : "sir.sneaky.panda.dragon";
+			};
+
+			// Number → Words conversion
+			const numberToWords = () => {
+				const code = getActiveCountryCode();
+				const number = sanitizeInputNumber(dom.inputPhone.value, countryRules[code]);
+
+				if (!number) {
+					dom.result.textContent = 'Enter a valid mobile number.';
+					return;
+				}
+
+				const words = [];
+				const remainder = number;
+
+				console.log("remainder", remainder);
+
+				if (code === '1' || code === '49') {
+					words.push(titles[Number(remainder[0])] ?? 'unknown');
+					remainder = remainder.slice(1);
+				}
+
+				console.log("remainder", remainder);
+
+				if (remainder.length % 3 !== 0) {
+					dom.result.textContent = 'Remaining digits must group in threes.';
+					return;
+				}
+
+				splitTriplets(remainder).forEach((trip, idx) => {
+					console.log(trip, idx);
+					const num = Number(trip);
+
+					if(idx === 0)
+						words.push(adjectives[num] ?? 'unknown');
+					else
+						words.push(nouns[num] ?? 'unknown');
+
+					console.log(idx, idx === 0, num, nouns[num]);
+					console.log(words);
+				});
+
+				dom.result.textContent = words.join('.');
+			};
+
+			// Words → Number conversion
+			const wordsToNumber = () => {
+				const code = getActiveCountryCode();
+				const words = sanitizeInputWords(dom.inputWords.value, countryRules[code])
+
+				if (!words) {
+					dom.result.textContent = `Enter ${countryRules[code].wordCount} valid words.`;
+					return;
+				}
+
+				let number = '';
+				let hasTitle = false;
+
+				if (code === '1' || code === '49') {
+					const titleIdx = titles.indexOf(words[0]);
+
+					if (titleIdx === -1) {
+						dom.result.textContent = 'First word must be a title.';
+						return;
+					}
+
+					number += String(titleIdx);
+					hasTitle = true;
+				}
+
+				for (let wordPointer = hasTitle ? 1 : 0; wordPointer < words.length; wordPointer++) {
+					const lookupArr = wordPointer === (hasTitle ? 1 : 0) ? adjectives : nouns;
+					console.log(lookupArr);
+					const wordIdx = lookupArr.indexOf(words[wordPointer]);
+
+					console.log("lookin up word", wordPointer, "indexOf", words[wordPointer], "is", wordIdx);
+
+					if (wordIdx === -1) {
+						dom.result.textContent = 'Word not recognised.';
+						return;
+					}
+
+					number += String(wordIdx).padStart(3, '0');
+				}
+
+				const expectedLen = countryRules[code].length - countryRules[code].trunk.length;
+				if (number.length !== expectedLen) {
+					dom.result.textContent = 'Digit length mismatch.';
+					return;
+				}
+
+				const fullNumber = `+${code}${countryRules[code].trunk}${number}`;
+				dom.result.innerHTML = `<a href="tel:${fullNumber}" class="underline">${fullNumber}</a>`;
+			};
+
+			// Toggle UI mode
+			const toggleMode = isNumberToWords => {
+				dom.secNum.classList.toggle('hidden', !isNumberToWords);
+				dom.secWords.classList.toggle('hidden', isNumberToWords);
+
+				dom.modeN2w.classList.toggle('bg-[#5A3E36]', isNumberToWords);
+				dom.modeN2w.classList.toggle('bg-yellow-200', !isNumberToWords);
+				dom.modeN2w.classList.toggle('text-yellow-50', isNumberToWords);
+				dom.modeN2w.classList.toggle('text-[#5A3E36]', !isNumberToWords);
+
+				dom.modeW2n.classList.toggle('bg-[#5A3E36]', !isNumberToWords);
+				dom.modeW2n.classList.toggle('bg-yellow-200', isNumberToWords);
+				dom.modeW2n.classList.toggle('text-yellow-50', !isNumberToWords);
+				dom.modeW2n.classList.toggle('text-[#5A3E36]', isNumberToWords);
+
+				dom.result.textContent = '';
+				if (!isNumberToWords) updateInputPlaceholder();
+			};
+
+			// Event listeners
+			dom.countryWord.addEventListener('change', updateInputPlaceholder);
+			dom.modeN2w.addEventListener('click', () => toggleMode(true));
+			dom.modeW2n.addEventListener('click', () => toggleMode(false));
+			dom.convertBtn.addEventListener('click', numberToWords);
+			dom.callBtn.addEventListener('click', wordsToNumber);
+
+			// Initialise
+			toggleMode(true);
+		</script>
+	</body>
+</html>

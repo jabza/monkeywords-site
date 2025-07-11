@@ -1,0 +1,17 @@
+{
+  "name": "monkeywords-site",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "autoprefixer": "^10.4.21",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.0.4"
+  }
+}
