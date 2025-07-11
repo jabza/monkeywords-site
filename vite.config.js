@@ -3,7 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   root: "src",
-  base: "/monkeywords-site/",
   build: {
     outDir: "../docs"
   },
