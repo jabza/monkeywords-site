@@ -121,11 +121,11 @@
   },
   "49": {
     "prefix": "01",
-    "numberLength": 11,
-    "numberPattern": "^01[5-7]\\d{8}$",
-    "wordCount": 3,
+    "numberLength": 12,
+    "numberPattern": "^01[5-7][0-9]\\d{8}$",
+    "wordCount": 4,
     "flagEmoji": "🇩🇪",
-    "placeholder": "01612345678"
+    "placeholder": "016123456789"
   },
   "61": {
     "prefix": "04",
