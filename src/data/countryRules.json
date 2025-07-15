@@ -1,0 +1,266 @@
+{
+  "44": {
+    "prefix": "07",
+    "numberLength": 11,
+    "numberPattern": "^07\\d{9}$",
+    "wordCount": 3,
+    "flagEmoji": "🇬🇧",
+    "placeholder": "07123456789"
+  },
+  "1": {
+    "prefix": "",
+    "numberLength": 10,
+    "numberPattern": "^[2-9]\\d{2}[2-9]\\d{2}\\d{4}$",
+    "wordCount": 4,
+    "flagEmoji": "🇺🇸",
+    "placeholder": "2345671234"
+  },
+  "27": {
+    "prefix": "0",
+    "numberLength": 10,
+    "numberPattern": "^0[6-8]\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇿🇦",
+    "placeholder": "0712345678"
+  },
+  "30": {
+    "prefix": "6",
+    "numberLength": 10,
+    "numberPattern": "^6\\d{9}$",
+    "wordCount": 3,
+    "flagEmoji": "🇬🇷",
+    "placeholder": "6123456789"
+  },
+  "31": {
+    "prefix": "6",
+    "numberLength": 9,
+    "numberPattern": "^6\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇳🇱",
+    "placeholder": "612345678"
+  },
+  "32": {
+    "prefix": "04",
+    "numberLength": 10,
+    "numberPattern": "^04\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇧🇪",
+    "placeholder": "0412345678"
+  },
+  "33": {
+    "prefix": "0",
+    "numberLength": 10,
+    "numberPattern": "^0[67]\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇫🇷",
+    "placeholder": "0612345678"
+  },
+  "34": {
+    "prefix": "6",
+    "numberLength": 9,
+    "numberPattern": "^6\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇪🇸",
+    "placeholder": "612345678"
+  },
+  "36": {
+    "prefix": "06",
+    "numberLength": 11,
+    "numberPattern": "^06(?:20|30|31|50|70)\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇭🇺",
+    "placeholder": "06201234567"
+  },
+  "39": {
+    "prefix": "3",
+    "numberLength": 10,
+    "numberPattern": "^3\\d{9}$",
+    "wordCount": 3,
+    "flagEmoji": "🇮🇹",
+    "placeholder": "3123456789"
+  },
+  "40": {
+    "prefix": "7",
+    "numberLength": 10,
+    "numberPattern": "^7\\d{9}$",
+    "wordCount": 3,
+    "flagEmoji": "🇷🇴",
+    "placeholder": "7123456789"
+  },
+  "43": {
+    "prefix": "06",
+    "numberLength": 11,
+    "numberPattern": "^06\\d{9}$",
+    "wordCount": 3,
+    "flagEmoji": "🇦🇹",
+    "placeholder": "06123456789"
+  },
+  "45": {
+    "prefix": "2",
+    "numberLength": 8,
+    "numberPattern": "^2\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇩🇰",
+    "placeholder": "21234567"
+  },
+  "46": {
+    "prefix": "7",
+    "numberLength": 9,
+    "numberPattern": "^7\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇸🇪",
+    "placeholder": "712345678"
+  },
+  "48": {
+    "prefix": "5",
+    "numberLength": 9,
+    "numberPattern": "^5\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇵🇱",
+    "placeholder": "512345678"
+  },
+  "49": {
+    "prefix": "01",
+    "numberLength": 11,
+    "numberPattern": "^01[5-7]\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇩🇪",
+    "placeholder": "01612345678"
+  },
+  "61": {
+    "prefix": "04",
+    "numberLength": 10,
+    "numberPattern": "^04\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇦🇺",
+    "placeholder": "0412345678"
+  },
+  "64": {
+    "prefix": "02",
+    "numberLength": 10,
+    "numberPattern": "^02\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇳🇿",
+    "placeholder": "0212345678"
+  },
+  "65": {
+    "prefix": "",
+    "numberLength": 8,
+    "numberPattern": "^[89]\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇸🇬",
+    "placeholder": "81234567"
+  },
+  "91": {
+    "prefix": "0",
+    "numberLength": 10,
+    "numberPattern": "^[6-9]\\d{9}$",
+    "wordCount": 3,
+    "flagEmoji": "🇮🇳",
+    "placeholder": "6123456789"
+  },
+  "351": {
+    "prefix": "9",
+    "numberLength": 9,
+    "numberPattern": "^9\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇵🇹",
+    "placeholder": "912345678"
+  },
+  "352": {
+    "prefix": "6",
+    "numberLength": 9,
+    "numberPattern": "^6\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇱🇺",
+    "placeholder": "612345678"
+  },
+  "353": {
+    "prefix": "08",
+    "numberLength": 10,
+    "numberPattern": "^08\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇮🇪",
+    "placeholder": "0812345678"
+  },
+  "357": {
+    "prefix": "9",
+    "numberLength": 8,
+    "numberPattern": "^9\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇨🇾",
+    "placeholder": "91234567"
+  },
+  "358": {
+    "prefix": "0",
+    "numberLength": 10,
+    "numberPattern": "^0[45]\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇫🇮",
+    "placeholder": "041234567"
+  },
+  "359": {
+    "prefix": "08",
+    "numberLength": 10,
+    "numberPattern": "^08\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇧🇬",
+    "placeholder": "0812345678"
+  },
+  "370": {
+    "prefix": "6",
+    "numberLength": 8,
+    "numberPattern": "^6\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇱🇹",
+    "placeholder": "61234567"
+  },
+  "371": {
+    "prefix": "2",
+    "numberLength": 8,
+    "numberPattern": "^2\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇱🇻",
+    "placeholder": "21234567"
+  },
+  "372": {
+    "prefix": "5",
+    "numberLength": 8,
+    "numberPattern": "^5\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇪🇪",
+    "placeholder": "51234567"
+  },
+  "385": {
+    "prefix": "09",
+    "numberLength": 10,
+    "numberPattern": "^09\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇭🇷",
+    "placeholder": "0912345678"
+  },
+  "386": {
+    "prefix": "0",
+    "numberLength": 9,
+    "numberPattern": "^0[6-7]\\d{7}$",
+    "wordCount": 3,
+    "flagEmoji": "🇸🇮",
+    "placeholder": "061234567"
+  },
+  "420": {
+    "prefix": "",
+    "numberLength": 9,
+    "numberPattern": "^[67]\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇨🇿",
+    "placeholder": "612345678"
+  },
+  "421": {
+    "prefix": "9",
+    "numberLength": 9,
+    "numberPattern": "^9\\d{8}$",
+    "wordCount": 3,
+    "flagEmoji": "🇸🇰",
+    "placeholder": "912345678"
+  }
+}
